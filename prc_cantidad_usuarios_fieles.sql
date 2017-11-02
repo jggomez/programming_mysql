@@ -19,14 +19,14 @@ BEGIN
 	Open usuarios_cursor;
 	
 	read_loop : LOOP
+
+		FETCH usuarios_cursor INTO v_id;
 	
 		IF fin THEN
 			LEAVE read_loop;
-		END IF;
-	
-		FETCH usuarios_cursor INTO v_id;
+		END IF;		
 		
-		SET v_fiel = (Select Func_EsFiel(v_id));
+		SET v_fiel = Func_EsFiel(v_id);
 		
 		IF(v_fiel = 1) THEN
 			SET cant_usuarios_fieles_out = cant_usuarios_fieles_out + 1;
